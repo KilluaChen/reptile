@@ -21,16 +21,15 @@ def async2(f):
 def find_images(url):
     global page
     page += 1
-    # if page > 2:
-    #     return
+    if page > 2:
+        return
     print('开始下载第%s页' % page)
     res = urllib.request.urlopen(url)
     html = res.read().decode('utf-8')
     bs = BeautifulSoup(html, 'html.parser')
 
     # 设置目录
-    cu_page = bs.find('span', {'class': 'current-comment-page'}).get_text().replace('[', '').replace(']', '')
-    folder = os.getcwd() + '/images/' + cu_page
+    folder = os.getcwd() + '/images/'
     if not os.path.exists(folder):
         os.mkdir(folder)
 
